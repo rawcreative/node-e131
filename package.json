@@ -1,0 +1,21 @@
+{
+  "name": "node-e131",
+  "version": "0.0.1",
+  "description": "E1.31 client module for Node.JS",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "dmx",
+    "e131",
+    "e1.31"
+  ],
+  "author": "Tim Debo <tim@rawcreativestudios.com>",
+  "dependencies" : {
+  }, 
+  "engines": {
+    "node": ">=0.6"
+  }
+}
