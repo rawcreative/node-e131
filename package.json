@@ -13,6 +13,11 @@
     "e1.31"
   ],
   "author": "Tim Debo <tim@rawcreativestudios.com>",
+ "contributors": [
+   { "name" : "Ben Sudbury [sudsy]"
+     , "url" : "http://www.lighthouselogic.com/"
+    }
+  ],
   "dependencies" : {
   }, 
   "engines": {
