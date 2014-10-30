@@ -1,13 +1,13 @@
 var dgram = require('dgram');
 var Buffer = require('buffer').Buffer;
 
-function E131Client(host, port) {
+function E131Client(host, port, universe) {
     var id = this.uuid = 'fc118ca9-9cf0-4861-8ac7-06450a44ba8a';
     this._host = host;
     this._port = port || 5568; //default e1.31 = 5568
     this._socket = dgram.createSocket("udp4");
 
-    this.UNIVERSE = 1;
+    this.UNIVERSE = universe || 1;
 
     var data = new Array();
 
@@ -145,8 +145,8 @@ function isNumber(n) {
 
 exports.E131Client = E131Client;
 
-exports.createClient = function(host, port) {
-    return new E131Client(host, port);
+exports.createClient = function(host, port, universe) {
+    return new E131Client(host, port, universe);
 }
 
 E131Client.prototype.send = function(data) {
@@ -157,6 +157,8 @@ E131Client.prototype.send = function(data) {
     var i = numChannels + 1;
     var hi;
 
+    data[111] = this.sequenceNumber < 255 ? this.sequenceNumber++ : this.sequenceNumber = 0;
+    
     buf[123] = i >> 8;
     buf[124] = i;
 

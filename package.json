@@ -1,6 +1,6 @@
 {
   "name": "node-e131",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "E1.31 client module for Node.JS",
   "main": "main.js",
   "scripts": {
@@ -13,6 +13,11 @@
     "e1.31"
   ],
   "author": "Tim Debo <tim@rawcreativestudios.com>",
+ "contributors": [
+   { "name" : "Ben Sudbury [sudsy]"
+     , "url" : "http://www.lighthouselogic.com/"
+    }
+  ],
   "dependencies" : {
   }, 
   "engines": {
