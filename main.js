@@ -157,7 +157,8 @@ E131Client.prototype.send = function(data) {
     var i = numChannels + 1;
     var hi;
 
-    buf[111] = this.sequenceNumber < 256 ? this.sequenceNumber++ : this.sequenceNumber = 0;
+	this.sequenceNumber++;
+	buf[111] = this.sequenceNumber < 256 ? this.sequenceNumber = this.sequenceNumber : this.sequenceNumber = 0;
     
     buf[123] = i >> 8;
     buf[124] = i;
