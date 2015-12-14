@@ -1,7 +1,8 @@
-var e1client = require('./main.js');
-var client    = new e1client.createClient("10.10.10.12", 5568, 25);
+'use strict';
+const Client = require('./client.js');
+const client = new Client('10.10.10.12', 25);
 
-var data = new Array(512); // empty array turns off all channels
+let data = new Array(512); // empty array turns off all channels
 
 client.send(data);
 
