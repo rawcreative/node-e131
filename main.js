@@ -6,7 +6,7 @@ function E131Client(host, port, universe) {
     this._host = host;
     this._port = port || 5568; //default e1.31 = 5568
     this._socket = dgram.createSocket("udp4");
-
+    this.sequenceNumber = 0;
     this.UNIVERSE = universe || 1;
 
     var data = new Array();
@@ -120,7 +120,7 @@ function E131Client(host, port, universe) {
     data[108] = 100; // Priority
     data[109] = 0; // Reserved
     data[110] = 0; // Reserved
-    data[111] = 0; // Sequence Number
+    data[111] = this.sequenceNumber; // Sequence Number
     data[112] = 0; // Framing Options Flags
     data[113] = this.UNIVERSE >> 8; // Universe high
     data[114] = this.UNIVERSE; // Universe low
@@ -157,8 +157,8 @@ E131Client.prototype.send = function(data) {
     var i = numChannels + 1;
     var hi;
 
-    data[111] = this.sequenceNumber < 255 ? this.sequenceNumber++ : this.sequenceNumber = 0;
-    
+    buf[111] = this.sequenceNumber < 255 ? this.sequenceNumber++ : this.sequenceNumber = 0;
+   
     buf[123] = i >> 8;
     buf[124] = i;
 
@@ -179,7 +179,6 @@ E131Client.prototype.send = function(data) {
     hi = i >> 8;
     buf[115] = hi + 0x70;
     buf[116] = i;
-
 
     this._socket.send(buf, 0, buf.length, this._port, this._host, function() {});
 

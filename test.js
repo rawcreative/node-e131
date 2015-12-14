@@ -1,5 +1,5 @@
 var ctrl = require('./ctrl.js');
-var controller    = new ctrl.Controller("10.10.10.10", 1, 1);
+var controller    = new ctrl.Controller("10.10.10.12", 25, 512);
 
 var blue  = {red:0, green:0, blue:255};
 var green = {red:0, green:255, blue:0};

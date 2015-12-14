@@ -1,7 +1,7 @@
 var e131 = require('./main.js');
 
 var Controller = function(ip, universe, channels) {
-    this.client = e131.createClient(ip);
+    this.client = e131.createClient(ip, 5568, universe);
     this.client.UNIVERSE = universe;
     this.channels = channels;
     this.dmxData = new Array(channels);
