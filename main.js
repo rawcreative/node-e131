@@ -157,7 +157,7 @@ E131Client.prototype.send = function(data) {
     var i = numChannels + 1;
     var hi;
 
-    buf[111] = this.sequenceNumber < 255 ? this.sequenceNumber++ : this.sequenceNumber = 0;
+    buf[111] = this.sequenceNumber < 255 ? ++this.sequenceNumber : this.sequenceNumber = 0;
    
     buf[123] = i >> 8;
     buf[124] = i;
@@ -179,7 +179,7 @@ E131Client.prototype.send = function(data) {
     hi = i >> 8;
     buf[115] = hi + 0x70;
     buf[116] = i;
-
+   
     this._socket.send(buf, 0, buf.length, this._port, this._host, function() {});
 
 }
