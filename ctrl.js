@@ -1,7 +1,7 @@
 var e131 = require('./main.js');
 
-var Controller = function(ip, universe, channels) {
-    this.client = e131.createClient(ip, 5568, universe);
+var Controller = function(ip, universe, channels, name) {
+    this.client = e131.createClient(ip, 5568, universe, name);
     this.client.UNIVERSE = universe;
     this.channels = channels;
     this.dmxData = new Array(channels);
@@ -11,8 +11,17 @@ Controller.prototype.setChannel = function(channel, value) {
     this.dmxData[channel - 1] = value;
 };
 
-Controller.prototype.send = function() {
-    this.client.send(this.dmxData);
+Controller.prototype.setUniverse = function(universeData) {
+    this.dmxData = universeData;
+};
+
+Controller.prototype.send = function(master) {
+	var masterised = this.dmxData.map(function(x) {return x * master});
+    this.client.send(masterised);
+};
+
+Controller.prototype.close = function() {
+    this.client.close();
 };
 
 module.exports.Controller = Controller;
